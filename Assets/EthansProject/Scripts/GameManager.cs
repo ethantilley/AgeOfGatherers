@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Diagnostics;
 public class GameManager : MonoBehaviour {
     #region In Game Time
     [Header("In Game Time")]
     [Range(0.1f, 5f)]
     public float timeScale = 1;
-
+    public Stopwatch worldAge;
+    public int daysPast = 0;
     public Light gameSun;
     public float dayLength = 300;
 
@@ -18,8 +20,23 @@ public class GameManager : MonoBehaviour {
 
     float sunInitIntensity;
 
+    public static GameManager instance;
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            DestroyImmediate(this);
+        }
+        else
+        {
+            instance = this;
+        }
+    }
+
     private void Start()
     {
+        worldAge = new Stopwatch();
+        worldAge.Start();
         sunInitIntensity = gameSun.intensity;
     }
 
@@ -28,6 +45,8 @@ public class GameManager : MonoBehaviour {
     {
         if (Input.GetKeyDown(KeyCode.R))
             SceneManager.LoadScene(0);
+        if (Input.GetKeyDown(KeyCode.Escape))
+            Application.Quit();
 
         Time.timeScale = timeScale;
 
@@ -36,8 +55,10 @@ public class GameManager : MonoBehaviour {
         currentTimeOfDay += (Time.deltaTime / dayLength) * (timeRate);
 
         if (currentTimeOfDay >= 1)
+        {
             currentTimeOfDay = 0;
-
+            ++daysPast;
+        }
     }
 
     void UpdateSun()

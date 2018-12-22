@@ -11,11 +11,16 @@ namespace EthansProject
     {
 
 
-        /**
-         * Plan what sequence of actions can fulfill the goal.
-         * Returns null if a plan could not be found, or a list of the actions
-         * that must be performed, in order, to fulfill the goal.
-         */
+        /// <summary>
+        /// Plan what sequence of actions can fulfill the goal.
+        /// Returns null if a plan could not be found, or a list of the actions
+        /// that must be performed, in order, to fulfill the goal.
+        /// </summary>
+        /// <param name="agent"></param>
+        /// <param name="availableActions"></param>
+        /// <param name="worldState"></param>
+        /// <param name="goal"></param>
+        /// <returns></returns>
         public Queue<GOAPAction> Plan(GameObject agent,
                                       HashSet<GOAPAction> availableActions,
                                       HashSet<KeyValuePair<string, object>> worldState,
@@ -48,7 +53,7 @@ namespace EthansProject
             if (!success)
             {
                 // oh no, we didn't get a plan
-                Debug.LogWarning("NO plan was found for " + agent.name);
+//                Debug.LogWarning("NO plan was found for " + agent.name);
                 return null;
             }
 
@@ -88,12 +93,17 @@ namespace EthansProject
             return queue;
         }
 
-        /**
-         * Returns true if at least one solution was found.
-         * The possible paths are stored in the leaves list. Each leaf has a
-         * 'runningCost' value where the lowest cost will be the best action
-         * sequence.
-         */
+        /// <summary>
+        /// Returns true if at least one solution was found.
+        /// The possible paths are stored in the leaves list. Each leaf has a
+        /// 'runningCost' value where the lowest cost will be the best action
+        /// sequence.
+        /// </summary>
+        /// <param name="parent"></param>
+        /// <param name="leaves"></param>
+        /// <param name="usableActions"></param>
+        /// <param name="goal"></param>
+        /// <returns></returns>
         private bool BuildGraph(BrachNode parent, List<BrachNode> leaves, HashSet<GOAPAction> usableActions, HashSet<KeyValuePair<string, object>> goal)
         {
             bool foundOne = false;
@@ -131,9 +141,12 @@ namespace EthansProject
             return foundOne;
         }
 
-        /**
-         * Create a subset of the actions excluding the removeMe one. Creates a new set.
-         */
+        /// <summary>
+        /// Create a subset of the actions excluding the removeMe one. Creates a new set.    
+        /// </summary>
+        /// <param name="actions"></param>
+        /// <param name="removeMe"></param>
+        /// <returns></returns>
         private HashSet<GOAPAction> ActionSubset(HashSet<GOAPAction> actions, GOAPAction removeMe)
         {
             HashSet<GOAPAction> subset = new HashSet<GOAPAction>();
@@ -145,10 +158,14 @@ namespace EthansProject
             return subset;
         }
 
-        /**
-         * Check that all items in 'test' are in 'state'. If just one does not match or is not there
-         * then this returns false.
-         */
+        
+        /// <summary> 
+        ///  Check that all items in 'test' are in 'state'. If just one does not match or is not there
+        ///  then this returns false.
+        /// </summary>
+        /// <param name="test"></param>
+        /// <param name="state"></param>
+        /// <returns></returns>
         private bool InState(HashSet<KeyValuePair<string, object>> test, HashSet<KeyValuePair<string, object>> state)
         {
             bool allMatch = true;
@@ -169,9 +186,14 @@ namespace EthansProject
             return allMatch;
         }
 
-        /**
-         * Apply the stateChange to the currentState
-         */
+
+
+        /// <summary>
+        ///  Apply the stateChange to the currentState
+        /// </summary>
+        /// <param name="currentState"></param>
+        /// <param name="stateChange"></param>
+        /// <returns></returns>
         private HashSet<KeyValuePair<string, object>> PopulateState(HashSet<KeyValuePair<string, object>> currentState, HashSet<KeyValuePair<string, object>> stateChange)
         {
             HashSet<KeyValuePair<string, object>> state = new HashSet<KeyValuePair<string, object>>();
@@ -210,11 +232,9 @@ namespace EthansProject
             return state;
         }
 
-        /**
-         * Used for building up the graph and holding the running costs of actions.
-         */
-
-
+        /// <summary>
+        /// Used for building up the graph and holding the running costs of actions.
+        /// </summary>
         private class BrachNode
         {
             public BrachNode parent;

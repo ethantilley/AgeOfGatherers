@@ -1,33 +1,70 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-public class TownManager : MonoBehaviour {
+public class TownManager : MonoBehaviour
+{
 
 
     public GameObject gatherersPrefab, builderPrefab; // same VV
 
     [Header("Spawn Count")]
-    public int berryGatherers, woodGatherers, builders; //TODO: add builder and warter etc villagers when the work lol
+    public int gatherers, builders; //TODO: add builder and warter etc villagers when the work lol
+    int newestGeneration = 0;
+    public Dictionary<string, int> avaliableNames = new Dictionary<string, int>()
+    {
 
+        {"Ethan", 1}, {"Melvin", 1}, {"Jesse", 1}, {"Jackson", 1}, {"Riley", 1}, {"Kell", 1}, {"Ben", 1}, {"Melissa", 1}, {"Bethany", 1}, {"Kurtis Nerville", 1}
 
+    };
 
-	// Use this for initialization
-	void Start () {
+    /// <summary>
+    /// Returns a random name for a list 
+    /// also changes that name so that the names never 
+    /// </summary>
+    /// <returns></returns>
+    public string GetNewVillagerName()
+    {
+        string _villagerName = string.Empty, nameToSet = string.Empty;
+        int index = Random.Range(0, avaliableNames.Count);
+     
+        _villagerName = avaliableNames.Keys.ToList()[index];;
 
-        for (int i = 0; i < berryGatherers; i++)
-        {
-            Instantiate(gatherersPrefab, transform.position, Quaternion.identity);
-        }
-        
-        for (int i = 0; i < builders; i++)
-        {
-            Instantiate(builderPrefab, transform.position, Quaternion.identity);
-        }
+        if (avaliableNames[_villagerName] > 1)
+            nameToSet = string.Format(_villagerName + " #{0}", avaliableNames[_villagerName].ToString());
+        else
+            nameToSet = _villagerName;
+
+        avaliableNames[_villagerName] += 1;
+
+        return nameToSet;
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+
+
+    // Use this for initialization
+    void Start()
+    {
+
+        SpawnVillager(gatherersPrefab, gatherers);
+        SpawnVillager(builderPrefab, builders);
+    }
+
+
+    public void SpawnVillager(GameObject _villagerType, int _spawnAmount)
+    {
+        for (int i = 0; i < _spawnAmount; i++)
+        {
+          GameObject newVillager =  Instantiate(_villagerType, transform.position, Quaternion.identity);
+            newVillager.name = GetNewVillagerName();
+        }
+        newestGeneration++;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
 }

@@ -21,7 +21,7 @@ namespace EthansProject
         public RetriveWoodAction()
         {
             AddPrecondition("hasResource", false);
-  
+
             AddEffect("hasResource", true);
 
 
@@ -40,14 +40,14 @@ namespace EthansProject
 
             if (closest == null)
             {
-                UnityEngine.Debug.LogWarning("Resource supply not found");
+                //UnityEngine.Debug.LogWarning("Resource supply not found");
 
                 return false;
             }
             resourcesNeeded = GetComponent<ExpandStorageAction>().expandExpences;
-            if(closest.resourceCount < ResourceAmountNeeded)
+            if (closest.resourceCount < ResourceAmountNeeded)
             {
-                UnityEngine.Debug.LogWarning("Resource amount contains: " + closest.resourceCount + " and didn't have enough (" + ResourceAmountNeeded + ") to upgrade");
+               // UnityEngine.Debug.LogWarning("Wood resource amount contains: " + closest.resourceCount + " and didn't have enough (" + ResourceAmountNeeded + ") to upgrade");
 
                 return false;
             }
@@ -55,10 +55,10 @@ namespace EthansProject
             target = closest.gameObject;
             targetResourceSupply = closest;
 
-            Debug.Log("Closest = " + closest);
+//            Debug.Log("Closest = " + closest);
             return closest != null;
         }
-      
+
         public override bool IsDone()
         {
             return hasResource;

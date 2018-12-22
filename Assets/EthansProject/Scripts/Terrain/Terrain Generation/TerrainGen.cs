@@ -151,8 +151,7 @@ namespace EthansProject
                     NodeManager.instance.CreateNode(vertices[vertIndex], terrainData, x, z, CheckForTraversableRegion(height));
 
                     //if inbetween height spawn a object
-                    //Hack: make better object gen system.
-
+                    
                     SpawnObject(vertices[vertIndex], x, z, height);
                     
                     //Builds the vertices
@@ -175,7 +174,7 @@ namespace EthansProject
             mfComp.mesh.colors = colorMap;
             mfComp.mesh.RecalculateBounds();
             mfComp.mesh.RecalculateNormals();
-            GetComponent<MeshCollider>().sharedMesh = mfComp.mesh;
+           // GetComponent<MeshCollider>().sharedMesh = mfComp.mesh;
             NodeManager.instance.Initialize();
 
         }

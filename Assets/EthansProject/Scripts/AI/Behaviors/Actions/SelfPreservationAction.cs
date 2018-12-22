@@ -11,6 +11,12 @@ namespace EthansProject {
         {
             get { return Mathf.Abs(GetComponent<Villager>().hungerCap - GetComponent<Villager>().currentHungerLevel); }
         }
+
+        public Villager AgentRole
+        {
+            get { return GetComponent<Villager>(); }
+        }
+
         public SelfPreservationAction()
         {
             AddPrecondition("needsFood", true);
@@ -51,7 +57,8 @@ namespace EthansProject {
         {
             if (!recivedFood && targetResourceSupply.resourceCount >= AmountNeeded)
             {
-                agent.GetComponent<Villager>().currentHungerLevel += targetResourceSupply.TakeResource(Mathf.RoundToInt(AmountNeeded));
+                AgentRole.CalculateNewDeathAge(AgentRole.currentHungerLevel);
+                AgentRole.currentHungerLevel += targetResourceSupply.TakeResource(Mathf.RoundToInt(AmountNeeded));
                 // targetResourceSupply.StoreResource(Storage.berriesHolding);
                 recivedFood = true;
                 return true;

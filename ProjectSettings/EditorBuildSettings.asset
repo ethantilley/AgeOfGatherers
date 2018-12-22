@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/EthansProject/Scenes/Main_Scene.unity
-    guid: 550b9b95c1758124c8c7f7149342a8d4
+    path: Assets/EthansProject/Scenes/Scene_Loader.unity
+    guid: bbbb62f5c88b3b749b9a3a31643335cd
+  - enabled: 1
+    path: Assets/EthansProject/Scenes/Simulation.unity
+    guid: 48e0a348cb795454593d17fed3ed4158
   m_configObjects: {}

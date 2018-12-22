@@ -6,7 +6,7 @@ using System;
 namespace EthansProject
 {
     /// <summary>
-    /// Hack: comment This when you get around to it.
+    /// Heaping class for efficently sorting of nodes and other items
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public class Heaping<T> where T : IHeapItem<T>

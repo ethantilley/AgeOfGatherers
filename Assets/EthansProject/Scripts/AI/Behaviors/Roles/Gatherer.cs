@@ -4,7 +4,8 @@ using UnityEngine;
 namespace EthansProject
 {
     /// <summary>
-    /// Inherates from 
+    /// Inherates from villager, the common class all role dirive from.
+    /// 
     /// </summary>
     public class Gatherer : Villager
     {

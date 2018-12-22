@@ -29,11 +29,11 @@ namespace EthansProject
 
             if (WorldInfo.filledStorage.Count == 0)
             {
-                Debug.Log("None to upgrade");
+//                Debug.Log("None to upgrade");
                 return false;
             }
-            else
-                Debug.Log("Some to upgrade");
+            //else
+               // Debug.Log("Some to upgrade");
 
             List<ResourceSupply> sources = new List<ResourceSupply>();
 

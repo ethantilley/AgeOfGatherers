@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+
 namespace EthansProject
 {
 
@@ -46,6 +47,11 @@ namespace EthansProject
             availableActions.Add(a);
         }
 
+        /// <summary>
+        /// Seaches for action in the agents available actions
+        /// </summary>
+        /// <param name="action"></param>
+        /// <returns></returns>
         public GOAPAction GetAction(Type action)
         {
             foreach (GOAPAction g in availableActions)
@@ -56,16 +62,27 @@ namespace EthansProject
             return null;
         }
 
+        /// <summary>
+        /// Removes the action from the available actions
+        /// </summary>
+        /// <param name="action"></param>
         public void RemoveAction(GOAPAction action)
         {
             availableActions.Remove(action);
         }
 
+        /// <summary>
+        /// Check to see if the agent has any actions to preform a plan
+        /// </summary>
+        /// <returns></returns>
         private bool HasActionPlan()
         {
             return currentActions.Count > 0;
         }
 
+        /// <summary>
+        /// Formulates the plan based on availble actions, world state, etc
+        /// </summary>
         private void CreateIdleState()
         {
             idleState = (fsm, gameObj) =>
@@ -94,7 +111,7 @@ namespace EthansProject
                 else
                 {
                     // ugh, we couldn't get a plan
-                    Debug.Log("<color=orange>Failed Plan:</color> " + prettyPrint(goal));
+//                    Debug.Log("<color=orange>Failed Plan:</color> " + prettyPrint(goal));
                     dataProvider.PlanFailed(goal, currentActions);
                     fsm.PopState(); // move back to IdleAction state
                     fsm.PushState(idleState);
@@ -103,6 +120,9 @@ namespace EthansProject
             };
         }
 
+        /// <summary>
+        /// Starts acting on the plan by moving the agen
+        /// </summary>
         private void CreateMoveToState()
         {
             moveToState = (fsm, gameObj) =>
@@ -127,6 +147,9 @@ namespace EthansProject
             };
         }
 
+        /// <summary>
+        /// Preforms the action if the agent is in range 
+        /// </summary>
         private void CreatePerformActionState()
         {
 
@@ -167,7 +190,7 @@ namespace EthansProject
                             // action failed, we need to plan again
                             fsm.PopState();
                             fsm.PushState(idleState);
-                           // Debug.LogError(gameObj.name + " could not prefrom the action, " + action + ". The agent is now going to abort plan.");
+                            Debug.LogWarning(gameObj.name + " could not prefrom the action, " + action + ". The agent ("+gameObject.name+") is now going to abort plan.");
                             dataProvider.PlanAborted(action);
                         }
                     }
@@ -190,6 +213,7 @@ namespace EthansProject
             };
         }
 
+
         private void FindDataProvider()
         {
             foreach (Component comp in gameObject.GetComponents(typeof(Component)))
@@ -202,6 +226,9 @@ namespace EthansProject
             }
         }
 
+        /// <summary>
+        /// Loads all the avaliable actions on the gameobject
+        /// </summary>
         private void LoadActions()
         {
             GOAPAction[] actions = gameObject.GetComponents<GOAPAction>();

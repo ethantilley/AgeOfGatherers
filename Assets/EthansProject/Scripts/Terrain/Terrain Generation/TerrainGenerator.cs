@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class TerrainGenerator : MonoBehaviour
 {
-     
+
     // Use this for initialization
     void Start()
     {
         GenerateMap();
-
-
     }
+
     public float xScale = 1f;
     public float xOffset = 0f;
 
@@ -30,7 +29,7 @@ public class TerrainGenerator : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-         
+
         if (!regenerate)
             return;
 
@@ -77,7 +76,7 @@ public class TerrainGenerator : MonoBehaviour
                     {
                         if (treeChance >= treeSpawnPossiblitity)
                         {
-                            Vector3 treePos = new Vector3((x/xScale), 1, (z/zScale));
+                            Vector3 treePos = new Vector3((x / xScale), 1, (z / zScale));
                             Instantiate(treePrefab, treePos, treePrefab.transform.rotation);
                         }
                     }
@@ -97,7 +96,7 @@ public class TerrainGenerator : MonoBehaviour
 
     public void GenerateMap()
     {
-         
+
     }
 
 }

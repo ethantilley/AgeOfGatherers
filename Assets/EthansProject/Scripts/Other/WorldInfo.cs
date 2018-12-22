@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace EthansProject
 {
+    /// <summary>
+    /// Static class that stroes the world info for ease of access
+    /// </summary>
     public static class WorldInfo
     {
 

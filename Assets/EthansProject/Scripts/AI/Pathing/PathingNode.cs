@@ -16,7 +16,7 @@ namespace EthansProject
             }
         }
 
-        // TODO: what.. public int uniqueID;
+        //  public int uniqueID;
 
         public int gridX, gridY;
         public PathingNode parent;

@@ -27,18 +27,18 @@ namespace EthansProject {
             tempTarg = Target;
             PathingManager.FindPath(gameObject.transform.position, tempTarg);
             recalculatePath = false;
-            return;
-            // Dosnt work just yet
-            if (NodeManager.instance.nodes.Count > 0)
-            {
-                for (int i = 0; i < NodeManager.instance.nodes.Count; i++)
-                {
-                    while (Vector3.Distance(transform.position, NodeManager.instance.nodes[i].node.spacialInfo) > 0.5f)
-                    {
-                        transform.position = Vector3.Lerp(transform.position, NodeManager.instance.nodes[i].node.spacialInfo, 0.5f);
-                    }
-                }
-            }
+           
+            //// Dosnt work just yet
+            //if (NodeManager.instance.nodes.Count > 0)
+            //{
+            //    for (int i = 0; i < NodeManager.instance.nodes.Count; i++)
+            //    {
+            //        while (Vector3.Distance(transform.position, NodeManager.instance.nodes[i].node.spacialInfo) > 0.5f)
+            //        {
+            //            transform.position = Vector3.Lerp(transform.position, NodeManager.instance.nodes[i].node.spacialInfo, 0.5f);
+            //        }
+            //    }
+            //}
         }
          /// <summary>
          /// Returns the closest berry bush that has berries.
