@@ -6,6 +6,7 @@ Implemented Features:
 * A* (A Star) Path Searching Algorithim with my own little twist for different behaviours. (Agents dont like going up slops if it isn't necessary).
 * Manager AI that decideds for them when to switch to and from roles based on the corresponding storage capacity.
 * Procedural terrain generation + generation of path data.
+* Death Via: Old age (Age of death base on how well they take care of themselves) & Hunger
 * Gravestones with generated epitaph of agents: name, bith to death date and cause of death.
 
 In-Progress Features:
