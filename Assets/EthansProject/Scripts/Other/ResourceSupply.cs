@@ -16,8 +16,12 @@ namespace EthansProject
         public int resourceCount = 0;
         public int resourceCapacity = 100;
         public float upgradeScale = 1.2f;
+        public float berryExpiryTime = 500;
+        private float currExpiryTime ;
         bool isFilled = false;
 
+
+        public Queue<int> resourceFillLog;
         public int UpgradeCost
         {
             get { return resourceCapacity; }
@@ -26,6 +30,18 @@ namespace EthansProject
         public void StoreResource(int _amount)
         {
             resourceCount += _amount;
+            resourceFillLog.Enqueue(_amount);
+        }
+
+        [ContextMenu("Display Storage Log")]
+        void PrintStorageLog()
+        {
+            
+            foreach (var item in resourceFillLog)
+            {
+                Debug.Log(item);
+
+            }
         }
 
         private void Update()
@@ -36,6 +52,19 @@ namespace EthansProject
                 //RemoveStorage();
                 WorldInfo.filledStorage.Add(this);
             }
+
+            if (currExpiryTime > 0)
+            {
+                currExpiryTime -= Time.deltaTime;
+
+            }
+            else
+            {
+                TakeResource(resourceFillLog.Peek());
+                resourceFillLog.Dequeue();
+                currExpiryTime = berryExpiryTime;
+            }
+
         }
 
         public int TakeResource(int _amount)
@@ -98,6 +127,7 @@ namespace EthansProject
         private void Start()
         {
             AddStorage();
+            currExpiryTime = berryExpiryTime;
         }
     }
 }

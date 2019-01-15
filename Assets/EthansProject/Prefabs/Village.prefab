@@ -688,6 +688,7 @@ MonoBehaviour:
   resourceCount: 500
   resourceCapacity: 750
   upgradeScale: 1.2
+  berryExpiryTime: 500
 --- !u!114 &114283784053460876
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -720,3 +721,4 @@ MonoBehaviour:
   resourceCount: 200
   resourceCapacity: 600
   upgradeScale: 1.2
+  berryExpiryTime: 100
