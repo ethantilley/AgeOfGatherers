@@ -17,7 +17,7 @@ A collective of AI agents that explore a procedurally generated environment, col
 
 ## Use
 
-Clone repo and build it in unity or [check out it itchio](https://ethantilley.itch.io/creaturefeature) and download it there (maybe an old version)
+Clone repo and build it in unity or [check out its itchio](https://ethantilley.itch.io/creaturefeature) and download it there (maybe an old version)
 
 ## Why
 
