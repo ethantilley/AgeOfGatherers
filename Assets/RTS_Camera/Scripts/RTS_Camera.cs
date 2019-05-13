@@ -37,7 +37,7 @@ namespace RTS_Cam
         public float rotationSped = 3f;
         public float panningSpeed = 10f;
         public float mouseRotationSpeed = 10f;
-
+        public float sprintMultiplier = 2;
         #endregion
 
         #region Height
@@ -110,6 +110,11 @@ namespace RTS_Cam
         private Vector2 KeyboardInput
         {
             get { return useKeyboardInput ? new Vector2(Input.GetAxis(horizontalAxis), Input.GetAxis(verticalAxis)) : Vector2.zero; }
+        }
+
+        public bool Shift
+        {
+            get { return Input.GetKey(KeyCode.LeftShift); }
         }
 
         private Vector2 MouseInput
@@ -210,7 +215,7 @@ namespace RTS_Cam
             {
                 Vector3 desiredMove = new Vector3(KeyboardInput.x, 0, KeyboardInput.y);
 
-                desiredMove *= keyboardMovementSpeed;
+                desiredMove *= keyboardMovementSpeed * (Shift ? sprintMultiplier : 1);
                 desiredMove *= Time.deltaTime;
                 desiredMove = Quaternion.Euler(new Vector3(0f, transform.eulerAngles.y, 0f)) * desiredMove;
                 desiredMove = m_Transform.InverseTransformDirection(desiredMove);
@@ -279,13 +284,17 @@ namespace RTS_Cam
         /// </summary>
         private void Rotation()
         {
-            if(useKeyboardRotation)
+            if (useKeyboardRotation)
                 transform.Rotate(Vector3.up, RotationDirection * Time.deltaTime * rotationSped, Space.World);
 
             if (useMouseRotation && Input.GetKey(mouseRotationKey))
-                m_Transform.Rotate(Vector3.up, -MouseAxis.x * Time.deltaTime * mouseRotationSpeed, Space.World);
-        }
 
+            {
+                m_Transform.Rotate(Vector3.up, -MouseAxis.x * Time.deltaTime * mouseRotationSpeed, Space.World);
+                m_Transform.Rotate(Vector3.left, -MouseAxis.y * Time.deltaTime * mouseRotationSpeed, Space.Self);
+
+            }
+        }
         /// <summary>
         /// follow targetif target != null
         /// </summary>

@@ -44,6 +44,8 @@ namespace RTS_Cam
                 camera.horizontalAxis = EditorGUILayout.TextField("Horizontal axis name: ", camera.horizontalAxis);
                 camera.verticalAxis = EditorGUILayout.TextField("Vertical axis name: ", camera.verticalAxis);
                 camera.keyboardMovementSpeed = EditorGUILayout.FloatField("Movement speed: ", camera.keyboardMovementSpeed);
+                camera.sprintMultiplier = EditorGUILayout.FloatField("Sprinting movement multiplier: ", camera.sprintMultiplier);
+
             }
 
             using (new HorizontalBlock())
