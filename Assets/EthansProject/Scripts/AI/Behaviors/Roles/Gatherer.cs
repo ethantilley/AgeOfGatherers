@@ -9,6 +9,8 @@ namespace EthansProject
     /// </summary>
     public class Gatherer : Villager
     {
+        [HideInInspector]
+        public ResourceSupply berrys, wood;
 
         public void GetActions()
         {
