@@ -15,12 +15,15 @@ namespace EthansProject
         [Header("Spawn Count")]
         public int gatherers, builders; //TODO: add builder and warter etc villagers when the work lol
         int newestGeneration = 0;
+
         public Dictionary<string, int> avaliableNames = new Dictionary<string, int>()
-    {
+        {
 
-        {"Ethan", 1}, {"Melvin", 1}, {"Jesse", 1}, {"Jackson", 1}, {"Riley", 1}, {"Kell", 1}, {"Ben", 1}, {"Melissa", 1}, {"Bethany", 1}, {"Kurtis Nerville", 1}
+            {"Ethan", 1}, {"Melvin", 1}, {"Jesse", 1}, {"Jackson", 1}, {"Riley", 1}, {"Kell", 1}, {"Ben", 1}, {"Melissa", 1}, {"Bethany", 1}, {"Kurtis Nerville", 1}
 
-    };
+        };
+
+        public List<Color> skinColors = new List<Color>();
 
         /// <summary>
         /// Returns a random name for a list 
@@ -63,7 +66,7 @@ namespace EthansProject
                 else if (item.storageType == ResourceSupply.StorageTypes.WoodStorage)
                     woodSupply = item;
             }
-               
+
         }
 
         public void SpawnVillager(GameObject _villagerType, int _spawnAmount)
@@ -74,6 +77,12 @@ namespace EthansProject
                 newVillager.name = GetNewVillagerName();
                 newVillager.GetComponent<Gatherer>().berrys = berrySupply;
                 newVillager.GetComponent<Gatherer>().wood = woodSupply;
+                GameObject agentBod = newVillager.GetComponent<Gatherer>().agentBody;
+                Material agentMat = new Material(agentBod.GetComponent<Renderer>().material)
+                {
+                    color = skinColors[UnityEngine.Random.Range(0, skinColors.Count - 1)]
+                };
+                agentBod.GetComponent<Renderer>().material = agentMat;
             }
             newestGeneration++;
         }

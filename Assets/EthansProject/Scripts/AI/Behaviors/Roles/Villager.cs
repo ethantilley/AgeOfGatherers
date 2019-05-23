@@ -37,7 +37,7 @@ namespace EthansProject
         int agentBirthDate, agentDeathDate;
 
         public GameObject graveStone;
-     
+        public GameObject agentBody;
         public AgentStorage Storage
         {
             get { return GetComponent<AgentStorage>(); }

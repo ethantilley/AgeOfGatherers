@@ -959,12 +959,12 @@ PrefabInstance:
     - target: {fileID: 114446017774876100, guid: d1a31748e9792bc45a44484b9ab637b1,
         type: 3}
       propertyPath: regions.Array.data[2].objectsToSpawn.Array.data[2].noiseCap
-      value: 0
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 114446017774876100, guid: d1a31748e9792bc45a44484b9ab637b1,
         type: 3}
       propertyPath: regions.Array.data[2].objectsToSpawn.Array.data[2].spawnPossiblity
-      value: 0.1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114446017774876100, guid: d1a31748e9792bc45a44484b9ab637b1,
         type: 3}
@@ -1005,7 +1005,7 @@ PrefabInstance:
     - target: {fileID: 114446017774876100, guid: d1a31748e9792bc45a44484b9ab637b1,
         type: 3}
       propertyPath: regions.Array.data[2].objectsToSpawn.Array.data[3].spawnCap
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4737231684571358, guid: d1a31748e9792bc45a44484b9ab637b1, type: 3}
       propertyPath: m_LocalPosition.x
