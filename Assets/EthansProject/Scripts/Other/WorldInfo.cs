@@ -1,19 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 namespace EthansProject
 {
     /// <summary>
     /// Static class that stroes the world info for ease of access
     /// </summary>
-    public static class WorldInfo
+    [System.Serializable]
+    public class WorldInfo
     {
 
         public static List<Resource> berryBushes = new List<Resource>();
         public static List<Resource> trees = new List<Resource>();
-
-        public static ResourceSupply berrySorages;
-        public static ResourceSupply treeStorages;
+        
+        public string clanName;
+        public int clanBerryGatherers, clanWoodGatherers;
+        public Color clanColor;
+        
+        public ResourceSupply berrySorages;
+        public ResourceSupply treeStorages;
 
         public static List<ResourceSupply> filledStorage = new List<ResourceSupply>();
 

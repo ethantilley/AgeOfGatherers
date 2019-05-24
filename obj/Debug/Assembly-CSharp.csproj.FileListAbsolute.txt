@@ -175,3 +175,6 @@ C:\Users\etilley3\Documents\creature-feature\Temp\bin\Debug\pb_Stl.dll
 C:\Users\etilley3\Documents\creature-feature\Temp\bin\Debug\Poly2Tri.dll
 C:\Users\etilley3\Documents\creature-feature\Temp\bin\Debug\ProBuilderCore-Unity5.dll
 C:\Users\etilley3\Documents\creature-feature\Temp\bin\Debug\ProBuilderMeshOps-Unity5.dll
+C:\Users\ethan\Documents\AgeOfGatherers\obj\Debug\Assembly-CSharp.csprojAssemblyReference.cache
+C:\Users\ethan\Documents\AgeOfGatherers\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache
+C:\Users\ethan\Documents\AgeOfGatherers\obj\Debug\Assembly-CSharp.dll

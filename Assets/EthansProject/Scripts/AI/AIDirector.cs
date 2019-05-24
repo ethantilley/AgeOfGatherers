@@ -21,7 +21,8 @@ namespace EthansProject
             }
         }
    
-        public int globalBerryGatherers, globalWoodGatherers; 
+
+        public List<WorldInfo> villageClans;
 
         public AnimationCurve scaleRoles;
 
@@ -36,8 +37,8 @@ namespace EthansProject
             float goalRolePercent = scaleRoles.Evaluate(berryPercent);
             float currentRolePercent = WorldInfo.RolePercentage();
 
-            globalBerryGatherers = WorldInfo.berryGatherers.Count;
-            globalWoodGatherers = WorldInfo.woodGatherers.Count;
+            clanBerryGatherers = WorldInfo.berryGatherers.Count;
+            clanWoodGatherers = WorldInfo.woodGatherers.Count;
 
             // return out that we dont need a role switch if goalRolePercent  & currentRolePercent are the same.
             if (currentRolePercent == goalRolePercent)
